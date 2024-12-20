@@ -1,0 +1,20 @@
+{% extends "header.html" %}
+{% load static %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Submit a Question for Fatwa</title>
+</head>
+<body>
+    <h1>Submit a Question for Fatwa</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit Question</button>
+    </form>
+</body>
+</html>
+{% endblock content  %}
