@@ -12,9 +12,10 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
+from dotenv import load_dotenv
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+load_dotenv()
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -26,7 +27,7 @@ SECRET_KEY = "django-insecure-vpsdv0mh5lv%yaq@6-n!1y7w%7=*(7+g=4cij=ygmz1_*@pine
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+CSRF_TRUSTED_ORIGINS = ['1']
 # Celery settings
 CELERY_BROKER_URL = 'redis://localhost:6379/0'  # URL to Redis
 CELERY_ACCEPT_CONTENT = ['json']
@@ -42,10 +43,6 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     'quran',
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.google',
     'django_recaptcha',
     'crispy_forms',
     'crispy_bootstrap5',
@@ -60,7 +57,6 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "allauth.account.middleware.AccountMiddleware",
 ]
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
@@ -90,8 +86,14 @@ WSGI_APPLICATION = "quranheaven.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        # "ENGINE": "django.db.backends.sqlite3",
+        # "NAME": BASE_DIR / "db.sqlite3",
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME':'railway',
+        'USER':'postgres',
+        'PASSWORD': os.environ.get('DB_PASSWORD_YO'),
+        'HOST':'junction.proxy.rlwy.net',
+        'PORT':'54419',
     }
 }
 
@@ -167,7 +169,8 @@ EMAIL_HOST_USER = 'abdallhshref4@gmail.com'
 EMAIL_HOST_PASSWORD = 'fxlyvoukgzimhygv'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 PASSWORD_RESET_TIMEOUT = 14400
 AUTHENTICATION_BACKENDS = [
     'quran.backends.EmailBackend',

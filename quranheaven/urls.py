@@ -38,7 +38,6 @@ urlpatterns = [
     path("<series>/<article>/update", article_update, name="article_update"),
     path("<series>/<article>/delete", article_delete, name="article_delete"),
     path("newsletter/", newsletter, name="newsletter"),
-    path('',include('allauth.urls')),
     path('make-order/', make_order, name='make_order'),
     path('success/', success, name='success'),
     path('about/', about, name='about'),
