@@ -49,6 +49,7 @@ urlpatterns = [
     path('plans/', plan_list, name='plan_list'),
     path('plans/payment/', payment, name='payment'),
     path('plans/payment_yearly/', payment_yearly, name='payment_yearly'),
+    path('dontae/', donate, name='donate'),
 ]
 urlpatterns += [
     path('submit_fatwa/', submit_fatwa, name='submit_fatwa'),

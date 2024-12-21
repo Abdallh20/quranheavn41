@@ -80,11 +80,11 @@ class SubscribedUsers(models.Model):
         return self.email
 class order(models.Model):
     name = models.CharField(max_length=100,default='')
-    email = models.EmailField(unique=True, max_length=100)
+    email = models.EmailField(default='', max_length=100)
     phonenumber=models.IntegerField("Phone Number")
     created_date = models.DateTimeField('Date created', default=timezone.now)
     def __str__(self):
-        return self.name
+        return f"{self.name},{self.phonenumber}"
 class Fatwa(models.Model):
     name=models.CharField(max_length=100,default='')
     question = models.TextField()  

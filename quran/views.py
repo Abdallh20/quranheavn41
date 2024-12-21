@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .decorators import user_not_authenticated,user_is_superuser,user_is_authenticated,user_is_not_subscribe,user_is_subscribe
+from .decorators import user_not_authenticated,user_is_superuser,user_is_authenticated,user_is_not_subscribe,user_is_subscribe,only_once,cannot_make_order
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User
 from typing import Protocol
@@ -28,6 +28,9 @@ from django.shortcuts import render, get_object_or_404
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Plan, Subscription
+@login_required
+def donate(request):
+    return render(request, 'donate.html')
 @login_required
 def payment_yearly(request):
     if request.user.status == 'subscriber':
@@ -145,11 +148,8 @@ def success(request):
     messages.success(request, "Your order done our team withh contact you")
     return render(request, 'success.html')
 @user_is_subscribe
+@cannot_make_order
 def make_order(request):
-    if request.user.is_authenticated:
-        if order.objects.filter(name=request.user).exists():
-            messages.error(request, "You already made an order, you can't make another one wait until ur first order activated")
-            return redirect('home')
     if request.method == 'POST':
         form = OrderForm(request.POST)
         if form.is_valid():

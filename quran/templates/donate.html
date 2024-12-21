@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donate Us - Quran Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+
+        header {
+            background-color: #2f5d42;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            background-color: #3c6f50;
+            padding: 10px 20px;
+            color: white;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 5px 10px;
+        }
+
+        nav a:hover {
+            background-color: #2f5d42;
+            border-radius: 5px;
+        }
+
+        .donate-container {
+            max-width: 800px;
+            margin: 20px auto;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .donate-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #2f5d42;
+        }
+
+        .donate-description {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #333;
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        .donation-options {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .donation-options button {
+            background-color: #2f5d42;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 10px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .donation-options button:hover {
+            background-color: #3c6f50;
+        }
+
+        .custom-donation {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .custom-donation input[type="number"] {
+            width: 200px;
+            padding: 10px;
+            margin: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .custom-donation button {
+            background-color: #2f5d42;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .custom-donation button:hover {
+            background-color: #3c6f50;
+        }
+
+        footer {
+            background-color: #2f5d42;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Quran Website</h1>
+    </header>
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Donate Us</a>
+        <a href="#">Contact</a>
+    </nav>
+    <div class="donate-container">
+        <h2>Support Our Mission</h2>
+        <p class="donate-description">
+            Your generous donations help us maintain and expand our efforts to spread the teachings of the Quran. 
+            Every contribution, big or small, makes a difference. Together, we can make a positive impact.
+        </p>
+        <div class="donation-options">
+            <button>$10</button>
+            <button>$50</button>
+            <button>$100</button>
+            <button>$500</button>
+        </div>
+        <div class="custom-donation">
+            <label for="custom-amount">Enter a custom amount:</label><br>
+            <input type="number" id="custom-amount" name="custom-amount" placeholder="e.g., 25" min="1" required>
+            <button>Donate</button>
+        </div>
+    </div>
+    <footer>
+        © 2024 Quran Website | Contact us
+    </footer>
+</body>
+</html>
