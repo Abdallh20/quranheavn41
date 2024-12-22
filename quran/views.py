@@ -608,7 +608,7 @@ def password_reset_request(request):
                         Password reset sent
                         
                             We've emailed you instructions for setting your password, if an account exists with the email you entered. 
-                            You should receive them shortly.<br>If you don't receive an email, please make sure you've entered the address 
+                            You should receive them shortly.If you don't receive an email, please make sure you've entered the address 
                             you registered with, and check your spam folder.
                         
                         """
@@ -620,7 +620,7 @@ def password_reset_request(request):
 
         for key, error in list(form.errors.items()):
             if key == 'captcha' and error[0] == 'This field is required.':
-                messages.error(request, "You must pass the reCAPTCHA test")
+                messages.error(request, "You must pass the Recapthca test")
                 continue
 
     form = PasswordResetForm()
