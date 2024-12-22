@@ -14,10 +14,10 @@
     <nav>
       <ul class="menu">
         <li><a href="{% url 'home' %}">الرئيسية</a></li>
-        <li><a href="#">الدورات</a></li>
-        <li><a href="#">...</a></li>
+        <li><a href="{% url 'home' %}">الدورات</a></li>
+        <li>...</li>
         <li><a href="{% url 'login' %}" class="join-btn">انضم إلينا</a></li>
-        <li><a href="#" class="contact-btn">تواصل معنا</a></li>
+        <li><a href="{% url 'contact' %}" class="contact-btn">تواصل معنا</a></li>
       </ul>
     </nav>
   </header>
