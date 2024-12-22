@@ -21,7 +21,7 @@
                         {% if user.is_superuser or user.is_staff %}
                             <a class="nav-item nav-link" href="admin/">Admin</a>
                             <a class="nav-item nav-link" href="{% url 'series-create' %}">New sheik</a>
-                            <a class="nav-item nav-link" href="{% url 'post-create' %}">New gategory</a>
+                            <a class="nav-item nav-link" href="{% url 'post-create' %}">New category</a>
                             <a class="nav-item nav-link" href="{%url 'fatwa_list'%}">fatwa</a>
                         {% endif %}
                         <a class="nav-item nav-link" href="{% url 'profile' user.username %}">
