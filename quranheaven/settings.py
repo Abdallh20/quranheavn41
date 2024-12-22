@@ -26,8 +26,8 @@ SECRET_KEY = "django-insecure-vpsdv0mh5lv%yaq@6-n!1y7w%7=*(7+g=4cij=ygmz1_*@pine
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-CSRF_TRUSTED_ORIGINS = ['1']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+CSRF_TRUSTED_ORIGINS = ['localhost', '127.0.0.1']
 # Celery settings
 CELERY_BROKER_URL = 'redis://localhost:6379/0'  # URL to Redis
 CELERY_ACCEPT_CONTENT = ['json']
