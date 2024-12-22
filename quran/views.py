@@ -121,9 +121,10 @@ def fatwa_list(request):
 def fatwa_detail(request, fatwa_id):
     fatwa = get_object_or_404(Fatwa, id=fatwa_id)
     return render(request, 'fatwa_detail.html', {'fatwa': fatwa})
-
+@login_required
 def contact(request):
     return render(request, 'contact.html')
+@login_required
 def about(request):
     return render(request, 'about.html')
 def activate(request, uidb64, token):
