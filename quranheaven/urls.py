@@ -20,7 +20,8 @@ from django.urls import path,include
 from quran.views import *
 from django.conf import settings
 from django.conf.urls.static import static
-
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('exchang/', exchange_details, name='exchang'),   
@@ -53,6 +54,8 @@ urlpatterns = [
 urlpatterns += [
     path('submit_fatwa/', submit_fatwa, name='submit_fatwa'),
 ]
+
+
 if settings.DEBUG:
-    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

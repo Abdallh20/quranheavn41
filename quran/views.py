@@ -154,7 +154,10 @@ def make_order(request):
     if request.method == 'POST':
         form = OrderForm(request.POST)
         if form.is_valid():
-            form.save()
+            name=form.cleaned_data['name']
+            email=form.cleaned_data['email']
+            phone=form.cleaned_data['phonenumber']
+            order.objects.create(name=name,email=email,phonenumber=phone)
             messages.success(request, "Your order done our team withh contact you")  
             return redirect('home')
             messages.success(request, "Your order done our team withh contact you")

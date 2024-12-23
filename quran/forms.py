@@ -113,10 +113,10 @@ class ArticleUpdateForm(forms.ModelForm):
             "image",
         ]
 
-class OrderForm(forms.ModelForm):
-    class Meta:
-        model = order
-        fields = ['name', 'email', 'phonenumber']
+class OrderForm(forms.Form):
+    name=forms.CharField(max_length=100, label="Name", widget=forms.TextInput(attrs={'placeholder': 'Enter your account name'}))
+    email=forms.EmailField(max_length=100, label="Email", widget=forms.EmailInput(attrs={'placeholder': 'Enter your account email'}))
+    phonenumber=forms.IntegerField( widget=forms.NumberInput(attrs={'placeholder': 'Enter your account phonenumber'}))
 
 class FatwaForm(forms.Form):
     name = forms.CharField(max_length=100, label="Name", widget=forms.TextInput(attrs={'placeholder': 'Enter your name'}))
