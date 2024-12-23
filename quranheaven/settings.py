@@ -187,7 +187,6 @@ LOGOUT_REDIRECT_URL = "/welcome"
 SILENCED_SYSTEM_CHECKS = ['django_recaptcha.recaptcha_test_key_error']
 RECAPTCHA_PUBLIC_KEY = '6LeOAooqAAAAAF-4-yBbh69yTKSXgAIFYjNotWY9'
 RECAPTCHA_PRIVATE_KEY = '6LeOAooqAAAAABa_Y7AlFeXuw-1cbwHvsC2RAamY'
-# Media files
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/home/sonic/quranheaven/media/'
+MEDIA_URL = '/media/' 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media') 
 
