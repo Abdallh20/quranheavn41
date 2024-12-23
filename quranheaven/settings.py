@@ -24,7 +24,7 @@ load_dotenv()
 SECRET_KEY = "django-insecure-vpsdv0mh5lv%yaq@6-n!1y7w%7=*(7+g=4cij=ygmz1_*@pine"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1','https://quranheavn41-production-f233.up.railway.app/','quranheavn41-production-f233.up.railway.app']
 CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1:8000/','https://quranheavn41-production-f233.up.railway.app/','https://quranheavn41-production-f233.up.railway.app']
