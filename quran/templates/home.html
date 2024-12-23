@@ -13,7 +13,7 @@
                     <div class="article-metadata">
                         <a class='mr-2' href="{% url 'profile' object.author %}">{{ object.author }}</a>
                         <small class="text-muted">{{ object.published|date:"F d, Y" }}</small>
-                        {% if object.author == user.is_superuser %}
+                        {% if object.author == user %}
                             <div style="float:right">
                                 {% if type == "series" %}
                                     <a class="btn btncolor btn-sm mt-1 mb-1" href="{% url 'series_update' object.slug %}">Update</a>
