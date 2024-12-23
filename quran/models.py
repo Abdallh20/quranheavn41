@@ -58,7 +58,7 @@ class Article(models.Model):
     published = models.DateTimeField("Date published", default=timezone.now)
     modified = models.DateTimeField("Date modified", default=timezone.now)
     series = models.ForeignKey(ArticleSeries, default="", verbose_name="sheik", on_delete=models.SET_DEFAULT)
-    author = models.ForeignKey(get_user_model(), default=1, on_delete=models.SET_DEFAULT)
+    author = models.ForeignKey(get_user_model(), default=1, on_delete=models.SET_DEFAULT, related_name="article_author")
     
     def __str__(self):
         return self.title
