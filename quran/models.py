@@ -97,7 +97,7 @@ class Fatwa(models.Model):
     
 
 class ExchangeDetail(models.Model):
-    user = models.ForeignKey(get_user_model(), default=1, on_delete=models.SET_DEFAULT, related_name="user_exchange_details")
+    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name="user_exchange_details")
     number_cash_wallet = models.Field(max_length=20)
     screenshot = models.ImageField(upload_to='screenshots')
     created_at = models.DateTimeField(auto_now_add=True)
