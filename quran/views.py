@@ -27,7 +27,6 @@ from django.core.mail import EmailMessage
 from django.shortcuts import render, get_object_or_404
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from .models import Plan, Subscription
 @login_required
 def donate(request):
     return render(request, 'donate.html')
@@ -51,7 +50,7 @@ def payment(request):
         form = ExchangeDetailForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()  
-            return redirect('success')  
+            return redirect('home')  
     else:
         form = ExchangeDetailForm()
     
