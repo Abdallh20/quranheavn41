@@ -125,15 +125,7 @@ class FatwaForm(forms.Form):
 
 class ExchangeDetailForm(forms.ModelForm):
     class Meta:
-        model = ExchangeDetail
-        fields = ['number_cash_wallet', 'screenshot']
-        widgets = {
-            'number_cash_wallet': forms.TextInput(attrs={
-                'class': 'form-control',
-                'placeholder': 'Enter wallet number'
-            }),
-            'screenshot': forms.ClearableFileInput(attrs={
-                'class': 'form-control-file',
-                'accept': 'image/jpeg, image/png'
-            }),
-        }
+        model = ExchangeDetail  
+        fields = ['number', 'screenshot']
+
+

@@ -68,19 +68,19 @@ def subscribea7a(request, plan_id):
     subscription.start_date = now()
     subscription.save()
     return render(request, 'plans/subscribed.html', {'subscription': subscription})
-
+@login_required
 @user_is_not_subscribe
 def exchange_details(request):
     if request.method == 'POST':
         form = ExchangeDetailForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()  
-            return redirect('success')  
+            instance = form.save(commit=False)
+            instance.user = request.user
+            instance.save()
+            return redirect('home') 
     else:
         form = ExchangeDetailForm()
-    
-    context = {'form': form}
-    return render(request, 'subscribe.html', context)
+    return render(request, 'submit_form.html', {'form': form})
 @user_is_subscribe
 def subscribe_mode(request):
     if request.method == 'POST':

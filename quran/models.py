@@ -97,11 +97,12 @@ class Fatwa(models.Model):
     
 
 class ExchangeDetail(models.Model):
-    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name="user_exchange_details")
-    number_cash_wallet = models.Field(max_length=20)
+    number = models.IntegerField()
     screenshot = models.ImageField(upload_to='screenshots')
     created_at = models.DateTimeField(auto_now_add=True)
+    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name="user_exchange_details")
 
     def __str__(self):
-        return f"Wallet: {self.user} {self.number_cash_wallet} - {self.created_at.strftime('%Y-%m-%d %H:%M')}"
+        return f"{self.user.username} - {self.number}"
+
 
