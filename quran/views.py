@@ -27,6 +27,7 @@ from django.core.mail import EmailMessage
 from django.shortcuts import render, get_object_or_404
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
+
 @login_required
 def donate(request):
     return render(request, 'donate.html')
@@ -47,15 +48,18 @@ def payment_yearly(request):
 @login_required
 def payment(request):
     if request.method == 'POST':
-        form = ExchangeDetailForm(request.POST, request.FILES)
+        form = WallEntryForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()  
-            return redirect('home')  
+            wall_entry = form.save(commit=False)
+            wall_entry.user = request.user 
+            wall_entry.save()
+            messages.success(request, "Your order has been placed successfully.")
+            return redirect('home')
+        
     else:
-        form = ExchangeDetailForm()
+        form = WallEntryForm()
     
-    context = {'form': form}
-    return render(request, 'payment.html',context)
+    return render(request, 'payment.html', {'form': form})
 @login_required
 def plan_list(request):
     return render(request, 'subscribe.html')
@@ -68,19 +72,21 @@ def subscribea7a(request, plan_id):
     subscription.start_date = now()
     subscription.save()
     return render(request, 'plans/subscribed.html', {'subscription': subscription})
-@login_required
+
 @user_is_not_subscribe
 def exchange_details(request):
     if request.method == 'POST':
-        form = ExchangeDetailForm(request.POST, request.FILES)
+        form = WallEntryForm(request.POST, request.FILES)
         if form.is_valid():
-            instance = form.save(commit=False)
-            instance.user = request.user
-            instance.save()
-            return redirect('home') 
+            wall_entry = form.save(commit=False)
+            wall_entry.user = request.user 
+            wall_entry.save()
+            return redirect('home')
+        messages.success(request, "Your order has been placed successfully.")
     else:
-        form = ExchangeDetailForm()
-    return render(request, 'submit_form.html', {'form': form})
+        form = WallEntryForm()
+    
+    return render(request, 'donate.html', {'form': form})
 @user_is_subscribe
 def subscribe_mode(request):
     if request.method == 'POST':

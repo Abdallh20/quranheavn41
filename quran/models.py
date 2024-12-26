@@ -96,13 +96,11 @@ class Fatwa(models.Model):
         return f"Fatwa {self.id} - {self.category if self.category else 'General'}"
     
 
-class ExchangeDetail(models.Model):
-    number = models.IntegerField()
+class WallEntry(models.Model):
+    wall_number = models.CharField(max_length=100)
     screenshot = models.ImageField(upload_to='screenshots')
-    created_at = models.DateTimeField(auto_now_add=True)
-    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name="user_exchange_details")
+    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    date_filled = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.user.username} - {self.number}"
-
-
+        return f" username: {self.user} - wallet: {self.wall_number} - date: {self.date_filled.strftime('%Y-%m-%d %H:%M')}"

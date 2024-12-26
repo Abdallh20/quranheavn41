@@ -123,9 +123,11 @@ class FatwaForm(forms.Form):
     question = forms.CharField(widget=forms.Textarea(attrs={'placeholder': 'Enter the questuion'}), label="Question")
     category = forms.CharField(max_length=100, required=False, label="Category",widget=forms.TextInput(attrs={'placeholder': 'Enter the category of questuion'}))
 
-class ExchangeDetailForm(forms.ModelForm):
+
+class WallEntryForm(forms.ModelForm):
+
     class Meta:
-        model = ExchangeDetail  
-        fields = ['number', 'screenshot']
 
+        model = WallEntry
 
+        fields = ['wall_number', 'screenshot']
