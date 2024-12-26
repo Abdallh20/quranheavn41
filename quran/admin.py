@@ -14,12 +14,13 @@ class ArticleSeriesAdmin(admin.ModelAdmin):
         'slug',
         'author',
         'image',
-        'published'
+        'published',
+        'video',
     ]
 
 class ArticleAdmin(admin.ModelAdmin):
     fieldsets = [
-        ("Header", {"fields": ['title', 'subtitle', 'article_slug', 'series', 'author','image']}),
+        ("Header", {"fields": ['title', 'subtitle', 'article_slug', 'series', 'author','image','video']}),
         ("Content", {"fields": ['content', 'notes']}),
         ("Date", {"fields": ['modified']})
     ]
@@ -30,4 +31,5 @@ admin.site.register(ArticleSeries, ArticleSeriesAdmin)
 admin.site.register(Article, ArticleAdmin)
 admin.site.register(order)
 admin.site.register(Fatwa)
-admin.site.register(WallEntry)
+admin.site.register(WallEntry_100)
+admin.site.register(WallEntry_200)

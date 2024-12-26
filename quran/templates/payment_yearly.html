@@ -42,7 +42,7 @@
                 
                 <div class="col-md-6">
                     <p><strong>Send</strong></p>
-                    <p>150 EGP</p>
+                    <p>200EGP</p>
                     <small>via Etisalat Cash or instapay</small>
                 </div>
             </div>
@@ -63,12 +63,7 @@
     <form method="post" enctype="multipart/form-data" class="border p-4 bg-light">
         {% csrf_token %}
         <div class="form-group">
-            {{ form.number_cash_wallet.label_tag }}
-            {{ form.number_cash_wallet }}
-        </div>
-        <div class="form-group">
-            {{ form.screenshot.label_tag }}
-            {{ form.screenshot }}
+            {{ form }}
         </div>
         <button type="submit" class="btn btn-primary btn-block">Submit</button>
     </form>

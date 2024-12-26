@@ -36,7 +36,8 @@ class ArticleSeries(models.Model):
     published = models.DateTimeField("Date published", default=timezone.now)
     author = models.ForeignKey(get_user_model(), default=1, on_delete=models.SET_DEFAULT)
     image = models.ImageField(default='default/no_image.jpg', upload_to=image_upload_to ,max_length=255)
-
+    video = models.FileField(upload_to='videos/', blank=True, null=True)
+    
     def __str__(self):
         return self.title
 
@@ -53,6 +54,7 @@ class Article(models.Model):
     subtitle = models.CharField(max_length=200, default="", blank=True)
     article_slug = models.SlugField("gategory slug", null=False, blank=False, unique=True)
     image=models.ImageField(default='default/no_image.jpg', upload_to=image_upload_to ,max_length=255)
+    video = models.FileField(upload_to='videos/', blank=True, null=True)
     content = HTMLField(blank=True, default="")
     notes = HTMLField(blank=True, default="")
     published = models.DateTimeField("Date published", default=timezone.now)
@@ -96,9 +98,18 @@ class Fatwa(models.Model):
         return f"Fatwa {self.id} - {self.category if self.category else 'General'}"
     
 
-class WallEntry(models.Model):
+class WallEntry_100(models.Model):
     wall_number = models.CharField(max_length=100)
     screenshot = models.ImageField(upload_to='screenshots')
+    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    date_filled = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f" username: {self.user} - wallet: {self.wall_number} - date: {self.date_filled.strftime('%Y-%m-%d %H:%M')}"
+    
+class WallEntry_200(models.Model):
+    wall_number = models.CharField(max_length=100)
+    screenshot = models.ImageField(upload_to='screenshots/yearly')
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     date_filled = models.DateTimeField(auto_now_add=True)
 

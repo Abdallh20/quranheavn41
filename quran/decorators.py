@@ -79,7 +79,7 @@ def user_is_not_subscribe(function=None, redirect_url='plan_list'):
 def user_is_subscribe(function=None, redirect_url='plan_list'):
     def decorator(view_func):
         def _wrapped_view(request, *args, **kwargs):
-            if  not request.user.status=='subscriber_month' or not request.user.status=='subscriber_year' and not request.user.is_superuser:
+            if  not request.user.status=='subscriber_month' and not request.user.status=='subscriber_year' and not request.user.is_superuser :
                 return redirect(redirect_url)
 
             return view_func(request, *args, **kwargs)

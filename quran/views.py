@@ -33,22 +33,8 @@ def donate(request):
     return render(request, 'donate.html')
 @login_required
 def payment_yearly(request):
-    if request.user.status == 'subscriber':
-        return redirect('home')
     if request.method == 'POST':
-        form = ExchangeDetailForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()  
-            return redirect('success')  
-    else:
-        form = ExchangeDetailForm()
-    
-    context = {'form': form}
-    return render(request, 'payment_yearly.html',context)
-@login_required
-def payment(request):
-    if request.method == 'POST':
-        form = WallEntryForm(request.POST, request.FILES)
+        form = WallEntryForm_200(request.POST, request.FILES)
         if form.is_valid():
             wall_entry = form.save(commit=False)
             wall_entry.user = request.user 
@@ -57,21 +43,27 @@ def payment(request):
             return redirect('home')
         
     else:
-        form = WallEntryForm()
+        form = WallEntryForm_200()
+    
+    return render(request, 'payment_yearly.html', {'form': form})
+@login_required
+def payment(request):
+    if request.method == 'POST':
+        form = WallEntryForm_100(request.POST, request.FILES)
+        if form.is_valid():
+            wall_entry = form.save(commit=False)
+            wall_entry.user = request.user 
+            wall_entry.save()
+            messages.success(request, "Your order has been placed successfully.")
+            return redirect('home')
+        
+    else:
+        form = WallEntryForm_100()
     
     return render(request, 'payment.html', {'form': form})
 @login_required
 def plan_list(request):
     return render(request, 'subscribe.html')
-
-@login_required
-def subscribea7a(request, plan_id):
-    plan = get_object_or_404(Plan, id=plan_id)
-    subscription, created = Subscription.objects.get_or_create(user=request.user)
-    subscription.plan = plan
-    subscription.start_date = now()
-    subscription.save()
-    return render(request, 'plans/subscribed.html', {'subscription': subscription})
 
 @user_is_not_subscribe
 def exchange_details(request):
@@ -87,18 +79,6 @@ def exchange_details(request):
         form = WallEntryForm()
     
     return render(request, 'donate.html', {'form': form})
-@user_is_subscribe
-def subscribe_mode(request):
-    if request.method == 'POST':
-        form = ExchangeDetailForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()  
-            return redirect('success')  
-    else:
-        form = ExchangeDetailForm()
-    
-    context = {'form': form}
-    return render(request, 'about.html', context)
 @user_is_subscribe
 def submit_fatwa(request):
     if not request.session.get('fatwa_count', 0) < 6:

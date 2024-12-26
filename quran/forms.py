@@ -75,6 +75,7 @@ class SeriesCreateForm(forms.ModelForm):
             "subtitle",
             "slug",
             "image",
+            "video",
         ]
 class ArticleCreateForm(forms.ModelForm):
     class Meta:
@@ -88,6 +89,7 @@ class ArticleCreateForm(forms.ModelForm):
             "notes",
             "series",
             "image",
+            "video"
         ]
 
 class SeriesUpdateForm(forms.ModelForm):
@@ -98,6 +100,7 @@ class SeriesUpdateForm(forms.ModelForm):
             "title",
             "subtitle",
             "image",
+            'video',
         ]
 
 class ArticleUpdateForm(forms.ModelForm):
@@ -111,6 +114,7 @@ class ArticleUpdateForm(forms.ModelForm):
             "notes",
             "series",
             "image",
+            'video'
         ]
 
 class OrderForm(forms.Form):
@@ -124,10 +128,19 @@ class FatwaForm(forms.Form):
     category = forms.CharField(max_length=100, required=False, label="Category",widget=forms.TextInput(attrs={'placeholder': 'Enter the category of questuion'}))
 
 
-class WallEntryForm(forms.ModelForm):
+class WallEntryForm_100(forms.ModelForm):
 
     class Meta:
 
-        model = WallEntry
+        model = WallEntry_100
+
+        fields = ['wall_number', 'screenshot']
+    
+
+class WallEntryForm_200(forms.ModelForm):
+
+    class Meta:
+
+        model = WallEntry_200
 
         fields = ['wall_number', 'screenshot']

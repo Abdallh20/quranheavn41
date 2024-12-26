@@ -23,9 +23,15 @@
     <div class="col-lg-9 col-md-12 col-sm-12" id="content">
         <div class="article-style">
             {{ object.content|safe }}
+            <div class="aspect-ratio-box">
+                <video width="500" height="320" controls>
+                    <source src="{{object.video.url}}" type="video/mp4">
+                  </video>
+                  <br>
+                  <button  class="btn btncolor btn-sm mt-1 mb-1" >
+                    <a href="{%url 'make_order'%}">order</a> </button> 
+            </div>
         </div>
     </div>
-        <button  class="btn btncolor btn-sm mt-1 mb-1" >
-        <a href="{%url 'make_order'%}">order</a> </button> 
-
+        </div>
 {% endblock content %}
