@@ -1,6 +1,6 @@
 from django.shortcuts import redirect
 from django.contrib import messages
-from .models import order
+from .models import orderr
 def user_not_authenticated(function=None, redirect_url='/'):
     def decorator(view_func):
         def _wrapped_view(request, *args, **kwargs):
@@ -90,13 +90,14 @@ def user_is_subscribe(function=None, redirect_url='plan_list'):
         return decorator(function)
 
     return decorator
-def cannot_make_order(function=None, redirect_url='/'):
+
+def cannot_make_order(function=None, redirect_url='home'):
     def decorator(view_func):
         def _wrapped_view(request, *args, **kwargs):
-            if request.user.is_authenticated:
-                if order.objects.filter(name=request.user.username):
-                    messages.error(request, "You have already made an order!")
-                    return redirect(redirect_url)
+            if orderr.objects.filter(user=request.user).exists():
+                messages.error(request, "You have already made an order!")
+                return redirect(redirect_url)
+                
             return view_func(request, *args, **kwargs)
 
         return _wrapped_view

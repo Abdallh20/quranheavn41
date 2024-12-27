@@ -81,10 +81,10 @@ class SubscribedUsers(models.Model):
     def __str__(self):
         return self.email
 class order(models.Model):
-    name = models.CharField(max_length=100,default='')
     email = models.EmailField(default='', max_length=100)
     phonenumber=models.IntegerField("Phone Number")
     created_date = models.DateTimeField('Date created', default=timezone.now)
+    name = models.ForeignKey(get_user_model(), on_delete=models.CASCADE )
     def __str__(self):
         return f"{self.name},{self.phonenumber}"
 class Fatwa(models.Model):
@@ -115,3 +115,12 @@ class WallEntry_200(models.Model):
 
     def __str__(self):
         return f" username: {self.user} - wallet: {self.wall_number} - date: {self.date_filled.strftime('%Y-%m-%d %H:%M')}"
+    
+class orderr(models.Model):
+    phonenumber = models.CharField(max_length=100)
+    email = models.CharField("email address", max_length=50)
+    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    date_filled = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f" username: {self.user} - wallet: {self.phonenumber} - date: {self.date_filled.strftime('%Y-%m-%d %H:%M')}"

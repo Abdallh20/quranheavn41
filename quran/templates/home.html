@@ -1,6 +1,11 @@
 {% extends "header.html" %}
-{% block content %}
-
+{% block content %}   
+                    {% if messages %}
+                                            
+                    {% for message in messages %}
+                    {% endfor %}
+                                        
+                    {% endif %}
     <div class="row display-flex justify-content-start">
     {% for object in objects %}
         <div class="col-lg-4 col-md-6 col-sm-12 mobiledevice">
@@ -11,13 +16,7 @@
                             <img class="img-fluid" src="{{ object.image.url }}">
                         </div>
                     </a>
-                    {% if messages %}
-                                            
-                    {% for message in messages %}
-                        {message}
-                    {% endfor %}
-                        
-                    {% endif %}
+
                     <div class="article-metadata">
                         <a class='mr-2' href="{% url 'profile' object.author %}">{{ object.author }}</a>
                         <small class="text-muted">{{ object.published|date:"F d, Y" }}</small>

@@ -29,7 +29,7 @@ class ArticleAdmin(admin.ModelAdmin):
 admin.site.register(CustomUser)
 admin.site.register(ArticleSeries, ArticleSeriesAdmin)
 admin.site.register(Article, ArticleAdmin)
-admin.site.register(order)
 admin.site.register(Fatwa)
 admin.site.register(WallEntry_100)
 admin.site.register(WallEntry_200)
+admin.site.register(orderr)

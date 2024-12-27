@@ -54,7 +54,7 @@ def payment(request):
             wall_entry = form.save(commit=False)
             wall_entry.user = request.user 
             wall_entry.save()
-            messages.success(request, "Your order has been placed successfully.")
+            messages.success(request, "<div class='alert alert-warning'>Your order has been placed successfully.</div>")
             return redirect('home')
         
     else:
@@ -91,7 +91,7 @@ def submit_fatwa(request):
             question = form.cleaned_data['question']
             category = form.cleaned_data.get('category', '')
             Fatwa.objects.create(question=question, category=category)
-            messages.success(request, "Your question has been submitted.")
+            messages.success(request, "<div class='alert alert-warning'>Your question has been submitted.</div>")
             return redirect('home')
     else:
         form = FatwaForm()
@@ -124,7 +124,7 @@ def activate(request, uidb64, token):
         user.is_active = True
         user.save()
 
-        messages.success(request, "Thank you for your email confirmation. Now you can login your account")
+        messages.success(request, "<div class='alert alert-warning'>Thank you for your email confirmation. Now you can login your account</div>")
         return redirect('login')
     else:
         messages.error(request, "Activation link is invalid!")
@@ -137,17 +137,16 @@ def success(request):
 @cannot_make_order
 def make_order(request):
     if request.method == 'POST':
-        form = OrderForm(request.POST)
+        form = orderformm(request.POST, request.FILES)
         if form.is_valid():
-            name=form.cleaned_data['name']
-            email=form.cleaned_data['email']
-            phone=form.cleaned_data['phonenumber']
-            order.objects.create(name=name,email=email,phonenumber=phone)
-            messages.success(request, "Your order done our team withh contact you")  
+            wall_entry = form.save(commit=False)
+            wall_entry.user = request.user 
+            wall_entry.save()
+            messages.success(request, "<div class='alert alert-warning'>Your order has been placed successfully.</div>")
             return redirect('home')
-            messages.success(request, "Your order done our team withh contact you")
+        
     else:
-        form = OrderForm()
+        form = orderformm()
     
     return render(request, 'make_order.html', {'form': form})
 
@@ -162,8 +161,8 @@ def activateEmail(request, user, to_email):
     })
     email = EmailMessage(mail_subject, message, to=[to_email])
     if email.send():
-        messages.success(request, f'Dear <b>{user}</b>, please go to you email <b>{to_email}</b> inbox and click on \
-                received activation link to confirm and complete the registration. <b>Note:</b> Check your spam folder.')
+        messages.success(request, f"<div class='alert alert-warning'> Dear <b>{user}</b>, please go to you email <b>{to_email}</b> inbox and click on \
+                received activation link to confirm and complete the registration. <b>Note:</b> Check your spam folder </div>")
     else:
         messages.error(request, f'Problem sending email to {to_email}, check if you typed it correctly.')
 
@@ -236,7 +235,7 @@ def custom_login(request):
             )
             if user is not None:
                 login(request, user)
-                messages.success(request, f"Hello <b>{user.username}</b>! You have been logged in")
+                messages.success(request, f"<div class='alert alert-warning'> Hello <b>{user.username}</b>! You have been logged in</div>")
                 return redirect("home")
 
         else:
@@ -264,7 +263,7 @@ def profile(request, username):
         if form.is_valid():
             user_form = form.save()
 
-            messages.success(request, f'{user_form}, Your profile has been updated!')
+            messages.success(request, f"<div class='alert alert-warning'>{user_form}, Your profile has been updated!</div>")
             return redirect('profile', user_form.username)
 
         for error in list(form.errors.values()):
