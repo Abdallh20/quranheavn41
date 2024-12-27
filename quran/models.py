@@ -7,6 +7,7 @@ from django.contrib.auth import get_user_model
 from django.utils import timezone
 from django.template.defaultfilters import slugify
 import os
+from phonenumber_field.modelfields import PhoneNumberField
 class CustomUser(AbstractUser):
     def image_upload_to(self, instance=None):
         if instance:
@@ -117,7 +118,7 @@ class WallEntry_200(models.Model):
         return f" username: {self.user} - wallet: {self.wall_number} - date: {self.date_filled.strftime('%Y-%m-%d %H:%M')}"
     
 class orderr(models.Model):
-    phonenumber = models.CharField(max_length=100)
+    phonenumber = PhoneNumberField(blank=True)
     email = models.CharField("email address", max_length=50)
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     date_filled = models.DateTimeField(auto_now_add=True)

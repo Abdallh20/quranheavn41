@@ -97,7 +97,6 @@ def cannot_make_order(function=None, redirect_url='home'):
             if orderr.objects.filter(user=request.user).exists():
                 messages.error(request, "You have already made an order!")
                 return redirect(redirect_url)
-                
             return view_func(request, *args, **kwargs)
 
         return _wrapped_view
