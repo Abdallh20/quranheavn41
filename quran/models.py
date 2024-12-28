@@ -100,7 +100,7 @@ class Fatwa(models.Model):
     
 
 class WallEntry_100(models.Model):
-    wall_number = models.CharField(max_length=100)
+    wall_number = PhoneNumberField(blank=True)
     screenshot = models.ImageField(upload_to='screenshots')
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     date_filled = models.DateTimeField(auto_now_add=True)
@@ -109,7 +109,7 @@ class WallEntry_100(models.Model):
         return f" username: {self.user} - wallet: {self.wall_number} - date: {self.date_filled.strftime('%Y-%m-%d %H:%M')}"
     
 class WallEntry_200(models.Model):
-    wall_number = models.CharField(max_length=100)
+    wall_number = PhoneNumberField(blank=True)
     screenshot = models.ImageField(upload_to='screenshots/yearly')
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     date_filled = models.DateTimeField(auto_now_add=True)
