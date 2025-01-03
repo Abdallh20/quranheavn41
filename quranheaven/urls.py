@@ -50,6 +50,8 @@ urlpatterns = [
     path('plans/payment/', payment, name='payment'),
     path('plans/payment_yearly/', payment_yearly, name='payment_yearly'),
     path('dontae/', donate, name='donate'),
+    # path('astmaa/', astmaa, name='astmaa'),
+    # path('reads/', reads, name='reads'),
 ]
 urlpatterns += [
     path('submit_fatwa/', submit_fatwa, name='submit_fatwa'),

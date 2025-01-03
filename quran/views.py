@@ -27,6 +27,11 @@ from django.core.mail import EmailMessage
 from django.shortcuts import render, get_object_or_404
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
+def astmaa(request):
+    return render(request,'astmaa.html')
+
+def reads(request):
+    return render(request,'reads.html')
 
 @login_required
 def donate(request):
